@@ -1,0 +1,314 @@
+{
+	"info": {
+		"_postman_id": "7fc1144e-d5ad-450f-84d1-d5ff4250a5d2",
+		"name": "Temp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25485714"
+	},
+	"item": [
+		{
+			"name": "Baza",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "507543",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pobierz tylko użytkowników o statusie \"active\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?status=active",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pobierz tylko użytkowników płci \"female\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?gender=female",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "female"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Użytkownicy ktorzy nie mają adresu email z domeną org",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Sprawdź, czy nie ma adresu email z org\", function () {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    for (let i = 0; i < responseJson.length; i++) {\r",
+							"        const email = responseJson[i].email;\r",
+							"        if (email && email.includes(\"org\")) {\r",
+							"            pm.expect.fail(\"Znaleziono adres email zawierający 'org': \" + email);\r",
+							"        }\r",
+							"    }\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?email(not_like)=org",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "email(not_like)",
+							"value": "org"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pobierz tylko użytkowników z ID między 506497 a 506503",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Body matches string\", function () {\r",
+							"//     pm.expect(pm.response.text()).to.include(\"Chetanaanand Patil\");\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"Checking fields values\", function () {\r",
+							"//     var jsonData = pm.response.json();\r",
+							"//     pm.expect(jsonData[1].id).to.equal(380647);\r",
+							"// });\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// pm.test(\"Status code is 200\", function () {\r",
+							"//     pm.response.to.have.status(200);\r",
+							"// });\r",
+							"\r",
+							"pm.test(\"Value of respons should not be empty\", function () {\r",
+							"    pm.expect(jsonData).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// pm.test(\"Response should have key id\", function () {\r",
+							"//     pm.expect(jsonData[0]).to.have.property('id');\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"Value of 'id' should be a number\", function () {\r",
+							"//     pm.expect(jsonData[0].id).to.be.an('number');\r",
+							"// });\r",
+							"\r",
+							"// pm.test(\"Value of 'id' should have at least one digit\", function () {\r",
+							"//     pm.expect(jsonData[0].id.toString().split(\"\").some(char => !isNaN(char))).to.be.true;\r",
+							"// });\r",
+							"\r",
+							"// console.log(pm.response.json());\r",
+							"// console.log(\"Status code: \" + pm.response.code);\r",
+							"// console.log(\"Headers: \" + JSON.stringify(pm.response.headers, null, 2));\r",
+							"// console.log(\"Cookies: \" + JSON.stringify(pm.response.cookies, null, 2));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users?id_gte=506497&id_lte=506503",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					],
+					"query": [
+						{
+							"key": "id_gte",
+							"value": "506497"
+						},
+						{
+							"key": "id_lte",
+							"value": "506503"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
