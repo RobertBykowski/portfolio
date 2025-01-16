@@ -4,7 +4,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from pages.create_account_page import CreateAccountPage
+from test_automation_framework_luma.pages.create_account_page import CreateAccountPage
 import csv
 import os
 from pathlib import Path

@@ -1,12 +1,15 @@
 import pytest
 from selenium import webdriver
-
-from pages import create_account_page
-from pages.search_results_page import SearchResultsPage
-from pages.home_page import HomePage
 import json
 import os
 import time
+
+from test_automation_framework_luma.pages import create_account_page
+from test_automation_framework_luma.pages.search_results_page import SearchResultsPage
+from test_automation_framework_luma.pages.home_page import HomePage
+from test_automation_framework_luma.pages.base_page import BasePage
+
+
 
 @pytest.fixture(scope="function")
 def driver():
